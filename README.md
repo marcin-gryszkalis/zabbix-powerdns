@@ -11,5 +11,5 @@ Name: PowerDNS Security Status
 2 -> Upgrade recommended
 3 -> Upgrade mandatory
 
-4. Import zabbix-powerdns.xml Zabbix template. The template uses "Agent (active)" type to get raw values -
-change the type to "Agent" if you use passive agents.
+4. Import zabbix-powerdns.xml Zabbix template. The template uses "Agent" type to get raw values -
+change the type to "Agent (active)" if you use active agents.
