@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>6.0</version>
-    <date>2022-11-14T00:03:03Z</date>
+    <date>2022-11-14T00:30:52Z</date>
     <groups>
         <group>
             <uuid>7df96b18c230490a9a0a9e2307226338</uuid>
@@ -1206,6 +1206,33 @@ https://doc.powerdns.com/md/common/security/#security-polling
                             <value>PowerDNS</value>
                         </tag>
                     </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>b3b59d0941d14674ac38b6de25c2fcdb</uuid>
+                            <expression>last(/Template App PowerDNS/powerdns.security_status)=0</expression>
+                            <name>PowerDNS security status: unknown</name>
+                            <opdata>{ITEM.LASTVALUE}</opdata>
+                            <priority>INFO</priority>
+                            <description>Cannot check security status</description>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                        <trigger>
+                            <uuid>21153344d5164041933445aea5696a6d</uuid>
+                            <expression>last(/Template App PowerDNS/powerdns.security_status)=3</expression>
+                            <name>PowerDNS security status: upgrade mandatory</name>
+                            <opdata>{ITEM.LASTVALUE}</opdata>
+                            <priority>AVERAGE</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                        <trigger>
+                            <uuid>374a518cd3354b9a8df2dc3a4518e363</uuid>
+                            <expression>last(/Template App PowerDNS/powerdns.security_status)=2</expression>
+                            <name>PowerDNS security status: upgrade recommended</name>
+                            <opdata>{ITEM.LASTVALUE}</opdata>
+                            <priority>WARNING</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
                 </item>
                 <item>
                     <uuid>9404326f9cd84f34b1b41c069a7bb4c4</uuid>
