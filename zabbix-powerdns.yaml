@@ -1,6 +1,6 @@
 zabbix_export:
   version: '6.0'
-  date: '2022-11-14T00:31:05Z'
+  date: '2022-11-15T18:30:36Z'
   groups:
     -
       uuid: 7df96b18c230490a9a0a9e2307226338
@@ -720,6 +720,27 @@ zabbix_export:
               tag: Application
               value: PowerDNS
         -
+          uuid: 087d45dbedbb47e5822d8a82ee34897a
+          name: query-cache-size
+          type: DEPENDENT
+          key: powerdns.querycache_size
+          delay: '0'
+          history: 7d
+          trends: 30d
+          description: 'Amount of queries in the querycache.'
+          preprocessing:
+            -
+              type: REGEX
+              parameters:
+                - '\bquery-cache-size=([^,]*)'
+                - \1
+          master_item:
+            key: powerdns.stats
+          tags:
+            -
+              tag: Application
+              value: PowerDNS
+        -
           uuid: 15a3d7760d4b45eca2644dd78ebb7a37
           name: query-cache-hit
           type: DEPENDENT
@@ -1428,6 +1449,77 @@ zabbix_export:
               value: '3'
               newvalue: 'Upgrade mandatory'
   graphs:
+    -
+      uuid: 42a9eb007e1b4d58a799aae601ed2771
+      name: 'PowerDNS Cache'
+      ymin_type_1: FIXED
+      graph_items:
+        -
+          color: FF4000
+          calc_fnc: ALL
+          item:
+            host: 'Template App PowerDNS'
+            key: powerdns.key_cache_size
+        -
+          sortorder: '1'
+          color: FFBF00
+          calc_fnc: ALL
+          item:
+            host: 'Template App PowerDNS'
+            key: powerdns.meta_cache_size
+        -
+          sortorder: '2'
+          color: BFFF00
+          calc_fnc: ALL
+          item:
+            host: 'Template App PowerDNS'
+            key: powerdns.packetcache_size
+        -
+          sortorder: '3'
+          color: FF0080
+          calc_fnc: ALL
+          item:
+            host: 'Template App PowerDNS'
+            key: powerdns.querycache_size
+        -
+          sortorder: '4'
+          color: 00FF00
+          calc_fnc: ALL
+          item:
+            host: 'Template App PowerDNS'
+            key: powerdns.signature_cache_size
+        -
+          sortorder: '5'
+          color: 1565C0
+          yaxisside: RIGHT
+          calc_fnc: ALL
+          item:
+            host: 'Template App PowerDNS'
+            key: powerdns.packetcache_hit
+        -
+          sortorder: '6'
+          color: 42A5F5
+          yaxisside: RIGHT
+          calc_fnc: ALL
+          item:
+            host: 'Template App PowerDNS'
+            key: powerdns.packetcache_miss
+        -
+          sortorder: '7'
+          color: 2E7D32
+          yaxisside: RIGHT
+          calc_fnc: ALL
+          item:
+            host: 'Template App PowerDNS'
+            key: powerdns.query_cache_hit
+        -
+          sortorder: '8'
+          color: 26A69A
+          yaxisside: RIGHT
+          calc_fnc: ALL
+          item:
+            host: 'Template App PowerDNS'
+            key: powerdns.query_cache_miss
     -
       uuid: e565ebafff8742b29e13c96d43bbe5c3
       name: 'PowerDNS Query Types'
