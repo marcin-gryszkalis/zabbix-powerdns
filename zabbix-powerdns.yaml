@@ -1,6 +1,6 @@
 zabbix_export:
   version: '6.0'
-  date: '2022-11-15T18:30:36Z'
+  date: '2022-11-15T20:36:20Z'
   groups:
     -
       uuid: 7df96b18c230490a9a0a9e2307226338
@@ -929,11 +929,11 @@ zabbix_export:
           triggers:
             -
               uuid: b3b59d0941d14674ac38b6de25c2fcdb
-              expression: 'last(/Template App PowerDNS/powerdns.security_status)=0'
+              expression: 'max(/Template App PowerDNS/powerdns.security_status,60m)=0'
               name: 'PowerDNS security status: unknown'
               opdata: '{ITEM.LASTVALUE}'
               priority: INFO
-              description: 'Cannot check security status'
+              description: 'Cannot check security status (over 1 hour to handle outages)'
               manual_close: 'YES'
             -
               uuid: 21153344d5164041933445aea5696a6d
