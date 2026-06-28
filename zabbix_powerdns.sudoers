@@ -1,2 +1,3 @@
-zabbix ALL=(ALL) NOPASSWD: /usr/local/bin/pdns_control list
-zabbix ALL=(ALL) NOPASSWD: /usr/local/bin/pdns_control qtypes
+# debian
+zabbix ALL=(ALL) NOPASSWD: /bin/pdns_control list
+zabbix ALL=(ALL) NOPASSWD: /bin/pdns_control qtypes
